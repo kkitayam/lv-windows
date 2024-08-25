@@ -3,7 +3,6 @@
  *
  * All rights reserved. Copyright (C) 1994,1997 by NARITA Tomio
  */
-
 #include <stdlib.h>
 #include <string.h>
 
@@ -14,6 +13,11 @@
 #ifdef UNIX
 #include <signal.h>
 #endif /* UNIX */
+
+#ifdef WINDOWS
+#include <process.h>
+#define spawnlp _spawnlp
+#endif
 
 #include <import.h>
 #include <itable.h>
@@ -358,9 +362,9 @@ private void CommandShellEscape( unsigned int arg )
   IstrFreeAll();
 
 #if defined(MSDOS) || defined(WINDOWS)
-  if( shell = getenv( "SHELL" ) )
+  if(( shell = getenv( "SHELL" ) ))
     spawnlp( 0, shell, shell, NULL );
-  else if( shell = getenv( "COMSPEC" ) )
+  else if(( shell = getenv( "COMSPEC" ) ))
     spawnlp( 0, shell, shell, NULL );
   else
     label = "shell unknown";

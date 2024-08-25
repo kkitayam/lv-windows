@@ -12,8 +12,8 @@ SHELL = /bin/sh
 ########################################################################
 
 # MSDOS
-CC = gcc
-CFLAGS = -I. -DWINDOWS -funsigned-char
+CC = clang
+CFLAGS = -I. -DWINDOWS -funsigned-char -D_CRT_SECURE_NO_WARNINGS
 LIB = -lkernel32 -lshell32
 O = o
 
@@ -28,13 +28,10 @@ OBJS = itable.$(O) ctable.$(O) \
 
 UNIOBJS = utf.$(O) unimap.$(O) unirev.$(O)
 
-lv: $(OBJS) $(UNIOBJS) consunix.$(O)
+lv.exe: $(OBJS) $(UNIOBJS) consunix.$(O)
 	$(CC) -o $@ $(OBJS) $(UNIOBJS) consunix.$(O) $(LIB)
 
 dos: lv.exe
-
-lv.exe: $(OBJS) consdos.$(O)
-	$(CC) @${ -o $@ $(OBJS) consdos.$(O) $(LIB) }
 
 lv.$(O): lv.c conv.h itable.h ctable.h file.h console.h command.h version.h find.h encode.h uty.h istr.h decode.h re.h unimap.h display.h
 	$(CC) -c -o $@ $(CFLAGS) lv.c

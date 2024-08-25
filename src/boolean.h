@@ -22,7 +22,7 @@
 #endif
 
 #ifndef TRUE
-#define TRUE		!NULL
+#define TRUE		(!NULL)
 #endif
 #ifndef boolean_t
 #define boolean_t	int

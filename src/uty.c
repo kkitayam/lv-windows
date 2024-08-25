@@ -16,6 +16,11 @@
 #include <dos.h>
 #endif /* MSDOS */
 
+#ifdef WINDOWS
+#include <io.h>
+#define isatty _isatty
+#endif
+
 #include <import.h>
 #include <itable.h>
 #include <begin.h>

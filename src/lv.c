@@ -3,7 +3,6 @@
  *
  * All rights reserved. Copyright (C) 1994,1997 by NARITA Tomio
  */
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -18,6 +17,19 @@
 #ifdef MSDOS
 #include <dos.h>
 #endif /* MSDOS */
+
+#ifdef WINDOWS
+#include <windows.h>
+#include <io.h>
+#include <process.h>
+#define close _close
+#define spawnlp _spawnlp
+#define dup _dup
+#define fdopen _fdopen
+#define unlink _unlink
+#define tempnam _tempnam
+#define fileno _fileno
+#endif /* WINDOWS */
 
 #include <import.h>
 #include <conv.h>
@@ -36,10 +48,6 @@
 #include <display.h>
 #include <version.h>
 #include <begin.h>
-
-#ifdef WINDOWS
-#include <windows.h>
-#endif /* WINDOWS */
 
 /*#define DEBUG*/
 

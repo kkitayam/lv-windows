@@ -42,7 +42,7 @@ public void ConsoleSuspend();
 public void ConsoleEnableInterrupt();
 public void ConsoleDisableInterrupt();
 
-public int ConsolePrint( char i );
+public void ConsolePrint( char i );
 
 public void ConsolePrints( char *str );
 public void ConsolePrintsStr( str_t *str, int length );

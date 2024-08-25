@@ -34,6 +34,9 @@
 #ifndef BACKGROUND_MASK
 #define BACKGROUND_MASK (BACKGROUND_RED|BACKGROUND_BLUE|BACKGROUND_GREEN|BACKGROUND_INTENSITY)
 #endif
+
+#include <conio.h>
+#define getch _getch
 #endif
 
 #ifdef UNIX
@@ -553,7 +556,7 @@ public int ConsoleGetChar()
 #endif /* UNIX */
 }
 
-public int ConsolePrint( char c )
+public void ConsolePrint( char c )
 {
 #ifdef MSDOS
   bdos( 0x06, 0xff != c ? c : 0, 0 );
@@ -565,7 +568,7 @@ public int ConsolePrint( char c )
 #endif /* WINDOWS */
 
 #ifdef UNIX
-  return putchar( c );
+  putchar( c );
 #endif /* UNIX */
 }
 
